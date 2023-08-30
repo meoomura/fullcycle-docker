@@ -20,7 +20,7 @@ services:
     networks:
       - node_network
   mysql:
-    image: mysql:5.7
+    build: ./dump
     command: --innodb-use-native-aio=0
     container_name: mysql
     restart: always
