@@ -20,4 +20,8 @@ Suba tudo em um repositório e faça a entrega.
 ## Correção
 ```
 Incluido arquivo .gitignore para não subir os arquivos das pasta node/node_modules e mysql no git.
-Incuido a pasta dump para criaçao da tabela people na execução do docker-compose.
+Incluido a pasta dump para criaçao da tabela people na execução do docker-compose.
+
+Incluido a instalaçao do express no Dockfile do node
+```
+
