@@ -8,3 +8,7 @@ Pasta docker/nginxComNodeJs
 
 ## DDD: Modelagem Tática e Patterns Desafio de repositório
 Pasta DDD_Modelagem_Tatica_e_Paterns/aluno
+
+## DDD: Modelagem Tática e Patterns Desafio Domain Events
+Pasta DDD_Modelagem_Tatica_e_Paterns/aluno
+    
