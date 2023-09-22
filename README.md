@@ -12,3 +12,6 @@ Pasta DDD_Modelagem_Tatica_e_Paterns/aluno
 ## DDD: Modelagem Tática e Patterns Desafio Domain Events
 Pasta DDD_Modelagem_Tatica_e_Paterns/aluno
     
+## Clean Architecture
+### Use cases para Product
+Pasta clean_architecture
