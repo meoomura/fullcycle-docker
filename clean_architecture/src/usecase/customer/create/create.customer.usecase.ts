@@ -1,3 +1,4 @@
+import Customer from "../../../domain/customer/entity/customer";
 import CustomerFactory from "../../../domain/customer/factory/customer.factory";
 import CustomerRepositoryInterface from "../../../domain/customer/repository/customer-repository.interface";
 import Address from "../../../domain/customer/value-object/address";
@@ -21,7 +22,9 @@ export default class CreateCustomerUsecase {
                 input.address.state,
             )
         );
-        await this.customerRepository.create(customer);
+        
+        await this.customerRepository.create(customer as Customer);
+
         return {
             id: customer.id,
             name: customer.name,

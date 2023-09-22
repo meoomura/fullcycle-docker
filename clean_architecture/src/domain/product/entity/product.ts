@@ -1,4 +1,6 @@
-export default class Product{
+import ProductFactory from "../factory/product.factory";
+
+export default class Product {
 
     private _id: string;
     private _name: string;

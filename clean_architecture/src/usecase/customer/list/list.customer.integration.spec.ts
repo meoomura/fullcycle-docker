@@ -4,6 +4,7 @@ import Address from "../../../domain/customer/value-object/address";
 import ListCustomerUsecase from "./list.customer.usecase";
 import CustomerModel from "../../../infrastructure/customer/repository/sequelize/customer.model";
 import CustomerRepository from "../../../infrastructure/customer/repository/sequelize/customer.repository";
+import Customer from "../../../domain/customer/entity/customer";
 
 const customer1 = CustomerFactory.createWithAddress(
     "Jhon",
@@ -39,9 +40,9 @@ describe("List customer usecase integration test", () => {
         const customerRepository = new CustomerRepository();
         const usecase = new ListCustomerUsecase(customerRepository);
 
-        await customerRepository.create(customer1);
+        await customerRepository.create(customer1 as Customer);
 
-        await customerRepository.create(customer2);
+        await customerRepository.create(customer2 as Customer);
 
         const output = await usecase.execute({});
 
