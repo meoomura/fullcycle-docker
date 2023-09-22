@@ -4,6 +4,7 @@ import Address from "../../../domain/customer/value-object/address"
 import UpdateCustomerUsecase from "./update.customer.usecase"
 import CustomerModel from "../../../infrastructure/customer/repository/sequelize/customer.model"
 import CustomerRepository from "../../../infrastructure/customer/repository/sequelize/customer.repository"
+import Customer from "../../../domain/customer/entity/customer"
 
 describe("Update customer usecase integration test", () => {
     let sequelize: Sequelize;
@@ -35,7 +36,7 @@ describe("Update customer usecase integration test", () => {
             new Address("Street", 123,"Zip", "City", "State")
         )
 
-        await customerRepository.create(customer);
+        await customerRepository.create(customer as Customer);
 
         const input = {
             id: customer.id,
@@ -65,7 +66,7 @@ describe("Update customer usecase integration test", () => {
             new Address("Street", 123,"Zip", "City", "State")
         )
 
-        await customerRepository.create(customer);
+        await customerRepository.create(customer as Customer);
 
         const input = {
             id: customer.id,
