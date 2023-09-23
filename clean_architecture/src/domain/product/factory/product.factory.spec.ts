@@ -25,7 +25,7 @@ describe("Product factory unit test", () =>{
     it("should throw error when product type is not supported", () => {
         expect( () => {
            ProductFactory.create("c","Product C", 1);
-        }).toThrowError("Product type not supported");
+        }).toThrowError(new Error("Product type not supported"));
     });
 
 })

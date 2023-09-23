@@ -11,7 +11,7 @@ describe("Order service unit tests", () => {
             const customer = new Customer("c1", "Customer 1");
             const order = OrderService.placeOrder(customer, []);
 
-        }).toThrowError("Order must have at least one item");
+        }).toThrowError(new Error("Order must have at least one item"));
         
     });
       
