@@ -5,31 +5,31 @@ describe("address unit tests", () => {
     it("should throw error when street is empty", () => {
         expect( () => {
             let address = new Address("", 100, "01234-123","São Paulo", "SP");
-        }).toThrowError("Street is required");
+        }).toThrowError(new Error("Street is required"));
     });
 
     it("should throw error when number is equal zero", () => {
         expect( () => {
             let address = new Address("Rua Sem Nome", 0, "01234-123","São Paulo", "SP");
-        }).toThrowError("Number is required");
+        }).toThrowError(new Error("Number is required"));
     });
 
     it("should throw error when zip is empty", () => {
         expect( () => {
             let address = new Address("Rua Sem Nome", 100, "","São Paulo", "SP");
-        }).toThrowError("Zip is required");
+        }).toThrowError(new Error("Zip is required"));
     });
 
     it("should throw error when city is empty", () => {
         expect( () => {
             let address = new Address("Rua Sem Nome", 100, "01234-123","", "SP");
-        }).toThrowError("City is required");
+        }).toThrowError(new Error("City is required"));
     });
 
     it("should throw error when state is empty", () => {
         expect( () => {
             let address = new Address("Rua Sem Nome", 100, "01234-123","São Paulo", "");
-        }).toThrowError("State is required");
+        }).toThrowError(new Error("State is required"));
     });
 
     it("should create address", () => {

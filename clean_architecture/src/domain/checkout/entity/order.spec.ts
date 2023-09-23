@@ -6,19 +6,19 @@ describe("Order unit tests", () => {
     it("should throw error when id is empty", () => {
         expect( () => {
             let order = new Order("","123", []);
-        }).toThrowError("Id is required");
+        }).toThrowError(new Error("Id is required"));
     });
 
     it("should throw error when customerId is empty", () => {
         expect( () => {
             let order = new Order("123","", []);
-        }).toThrowError("CustomerId is required");
+        }).toThrowError(new Error("CustomerId is required"));
     });
 
     it("should throw error when item is empty", () => {
         expect( () => {
             let order = new Order("123","123", []);
-        }).toThrowError("Item qtd must be greater than 0");
+        }).toThrowError(new Error("Item qtd must be greater than 0"));
     });
 
     it("should be calculate total", () => {
@@ -39,6 +39,6 @@ describe("Order unit tests", () => {
         expect(() => {
             const item = new OrderItem("i1","item 1",100, "p1",0);
             const order = new Order("o1", "c1",[item]);
-        }).toThrowError("Quantity must be greater than 0");
+        }).toThrowError(new Error("Quantity must be greater than 0"));
     });
 });
