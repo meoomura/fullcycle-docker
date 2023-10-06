@@ -1,11 +1,7 @@
-import exp from "constants";
 import { PlaceOrderInputDto } from "./place-order.dto";
 import PlaceOrderUseCase from "./place-order.usecase";
-import { promiseHooks } from "v8";
-import { AfterFind } from "sequelize-typescript";
 import Product from "../../domain/product.entity";
 import Id from "../../../@shared/domain/value-object/id.value-object";
-import { TypeOf } from "yup";
 
 const mockDate = new Date(2020, 1, 1);
 describe("PlaceOrderUseCase unit test", () => {
