@@ -5,15 +5,19 @@ import ProductModel from "./product.model";
 
 export default class ProductRepository implements ProductGateway {
   async add(product: Product): Promise<void> {
-    await ProductModel.create({
-      id: product.id.id,
-      name: product.name,
-      description: product.description,
-      purchasePrice: product.purchasePrice,
-      stock: product.stock,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
+    try {
+      await ProductModel.create({
+        id: product.id.id,
+        name: product.name,
+        description: product.description,
+        purchasePrice: product.purchasePrice,
+        stock: product.stock,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      });
+    } catch (err) {
+      throw err;
+    }
   }
   async find(id: string): Promise<Product> {
 
