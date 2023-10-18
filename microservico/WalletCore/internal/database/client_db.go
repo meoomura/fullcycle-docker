@@ -2,7 +2,8 @@ package database
 
 import (
 	"database/sql"
-	"meoomura/fullcycle/microservico/wallet/internal/entity"
+
+	"github.com/meoomura/fullcycle/microservico/wallet/internal/entity"
 )
 
 type ClientDB struct {

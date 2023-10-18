@@ -2,8 +2,9 @@ package database
 
 import (
 	"database/sql"
-	"meoomura/fullcycle/microservico/wallet/internal/entity"
 	"testing"
+
+	"github.com/meoomura/fullcycle/microservico/wallet/internal/entity"
 
 	"github.com/stretchr/testify/suite"
 )

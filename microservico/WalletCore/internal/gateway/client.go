@@ -1,7 +1,7 @@
 package gateway
 
 import (
-	"meoomura/fullcycle/microservico/wallet/internal/entity"
+	"github.com/meoomura/fullcycle/microservico/wallet/internal/entity"
 )
 
 type ClientGateway interface {

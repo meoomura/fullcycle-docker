@@ -2,7 +2,8 @@ package database
 
 import (
 	"database/sql"
-	"meoomura/fullcycle/microservico/wallet/internal/entity"
+
+	"github.com/meoomura/fullcycle/microservico/wallet/internal/entity"
 )
 
 type AccountDB struct {
@@ -65,6 +66,19 @@ func (a *AccountDB) Save(account *entity.Account) error {
 	}
 	defer stmt.Close()
 	_, err = stmt.Exec(account.ID, account.Client.ID, account.Balance, account.CreatedAt)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AccountDB) UpdateBalance(account *entity.Account) error {
+	stmt, err := a.DB.Prepare("UPDATE accounts SET balance = ? WHERE id = ?")
+	if err != nil {
+		return err
+	}
+	defer stmt.Close()
+	_, err = stmt.Exec(account.Balance, account.ID)
 	if err != nil {
 		return err
 	}
