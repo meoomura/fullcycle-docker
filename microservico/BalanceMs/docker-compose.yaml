@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  
+  balancedb:
+    build: ./dump
+    command: --innodb-use-native-aio=0
+    platform: linux/x86_64
+    container_name: balancedb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: balance
+      MYSQL_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - .docker/mysql:/var/lib/mysql
+
+  
