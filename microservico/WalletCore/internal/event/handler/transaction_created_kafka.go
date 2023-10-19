@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/meoomura/fullcycle/microservico/wallet/pkg/events"
-	"github.com/meoomura/fullcycle/microservico/wallet/pkg/kafka"
+	"meoomura/fullcycle/microservico/wallet/pkg/events"
+	"meoomura/fullcycle/microservico/wallet/pkg/kafka"
 )
 
 type TransactionCreatedKafkaHandler struct {

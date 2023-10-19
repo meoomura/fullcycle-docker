@@ -1,16 +1,30 @@
 version: '3'
 
 services:
-  goapp: 
-    build: .
+  walletcore: 
+    build: WalletCore/.
     platform: linux/amd64
     volumes:
-      - .:/app
+      - ./WalletCore:/app
     ports:
       - 8080:8080
+    depends_on:
+      - kafka
+      - walletdb    
+
+  balancems: 
+    build: BalanceMs/.
+    platform: linux/amd64
+    volumes:
+      - ./BalanceMs:/app
+    ports:
+      - 3003:3003
+    depends_on:
+      - kafka
+      - balancedb    
 
   walletdb:
-    build: ./dump
+    build: ./WalletCore/dump
     command: --innodb-use-native-aio=0
     platform: linux/x86_64
     container_name: walletdb
@@ -21,7 +35,21 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - .docker/mysql:/var/lib/mysql
+      - ./WalletCore/.docker/mysql:/var/lib/mysql
+
+  balancedb:
+    build: ./BalanceMs/dump
+    command: --innodb-use-native-aio=0
+    platform: linux/x86_64
+    container_name: balancedb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wallet
+      MYSQL_PASSWORD: root
+    ports:
+      - 3308:3306
+    volumes:
+      - ./BalanceMs/.docker/mysql:/var/lib/mysql
 
   zookeeper:
     image: "confluentinc/cp-zookeeper:6.1.0"
@@ -56,6 +84,7 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 100
       CONFLUENT_METRICS_ENABLE: 'false'
+ 
   control-center:
     image: confluentinc/cp-enterprise-control-center:7.3.0
     hostname: control-center

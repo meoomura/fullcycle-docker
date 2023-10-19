@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"testing"
 
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/entity"
+	"meoomura/fullcycle/microservico/wallet/internal/entity"
 
 	_ "github.com/mattn/go-sqlite3"
 	"github.com/stretchr/testify/suite"

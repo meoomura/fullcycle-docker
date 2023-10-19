@@ -5,17 +5,17 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/database"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/event"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/event/handler"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/usecase/create_account"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/usecase/create_client"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/usecase/create_transaction"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/web"
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/web/webserver"
-	"github.com/meoomura/fullcycle/microservico/wallet/pkg/events"
-	"github.com/meoomura/fullcycle/microservico/wallet/pkg/kafka"
-	"github.com/meoomura/fullcycle/microservico/wallet/pkg/uow"
+	"meoomura/fullcycle/microservico/wallet/internal/database"
+	"meoomura/fullcycle/microservico/wallet/internal/event"
+	"meoomura/fullcycle/microservico/wallet/internal/event/handler"
+	"meoomura/fullcycle/microservico/wallet/internal/usecase/create_account"
+	"meoomura/fullcycle/microservico/wallet/internal/usecase/create_client"
+	"meoomura/fullcycle/microservico/wallet/internal/usecase/create_transaction"
+	"meoomura/fullcycle/microservico/wallet/internal/web"
+	"meoomura/fullcycle/microservico/wallet/internal/web/webserver"
+	"meoomura/fullcycle/microservico/wallet/pkg/events"
+	"meoomura/fullcycle/microservico/wallet/pkg/kafka"
+	"meoomura/fullcycle/microservico/wallet/pkg/uow"
 
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 	_ "github.com/go-sql-driver/mysql"
@@ -23,7 +23,7 @@ import (
 
 func main() {
 	//db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/wallet?charset=utf8mb4&parseTime=True&loc=Local")
-	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", "root", "root", "mysql", "3306", "wallet"))
+	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", "root", "root", "walletdb", "3306", "wallet"))
 	if err != nil {
 		panic(err)
 	}

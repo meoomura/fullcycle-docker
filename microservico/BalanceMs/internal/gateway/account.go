@@ -1,8 +1,6 @@
 package gateway
 
-import (
-	"meoomura/fullcycle/microservico/wallet/internal/entity"
-)
+import "github.com/meoomura/fullcycle/microservico/balancems/internal/entity"
 
 type AccountGateway interface {
 	Get(id string) (*entity.Account, error)

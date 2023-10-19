@@ -2,8 +2,9 @@ package database
 
 import (
 	"database/sql"
+	"time"
 
-	"meoomura/fullcycle/microservico/wallet/internal/entity"
+	"github.com/meoomura/fullcycle/microservico/balancems/internal/entity"
 )
 
 type AccountDB struct {
@@ -18,27 +19,16 @@ func NewAccountDB(db *sql.DB) *AccountDB {
 
 func (a *AccountDB) Get(id string) (*entity.Account, error) {
 	var account entity.Account
-	var client entity.Client
-	account.Client = &client
 
 	stmt, err := a.DB.Prepare(`
 		SELECT
-			a.id,
-			a.client_id,
-			a.balance,
-			a.created_at,
-			c.id,
-			c.name,
-			c.email,
-			c.created_at
+			id,
+			balance,
+			updated_at
 		FROM
-			accounts a
-		INNER JOIN
-			clients c
-		ON
-			a.client_id = c.id
+			accounts
 		WHERE
-			a.id = ?`)
+			id = ?`)
 	if err != nil {
 		return nil, err
 	}
@@ -46,13 +36,8 @@ func (a *AccountDB) Get(id string) (*entity.Account, error) {
 	row := stmt.QueryRow(id)
 	err = row.Scan(
 		&account.ID,
-		&account.ClientID,
 		&account.Balance,
-		&account.CreatedAt,
-		&account.Client.ID,
-		&account.Client.Name,
-		&account.Client.Email,
-		&account.Client.CreatedAt)
+		&account.UpdatedAt)
 	if err != nil {
 		return nil, err
 	}
@@ -60,12 +45,12 @@ func (a *AccountDB) Get(id string) (*entity.Account, error) {
 }
 
 func (a *AccountDB) Save(account *entity.Account) error {
-	stmt, err := a.DB.Prepare("INSERT INTO accounts (id, client_id, balance, created_at) VALUES (?, ?, ?, ?)")
+	stmt, err := a.DB.Prepare("INSERT INTO accounts (id, balance, updated_at) VALUES (?, ?, ?)")
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(account.ID, account.Client.ID, account.Balance, account.CreatedAt)
+	_, err = stmt.Exec(account.ID, account.Balance, account.UpdatedAt)
 	if err != nil {
 		return err
 	}
@@ -73,12 +58,12 @@ func (a *AccountDB) Save(account *entity.Account) error {
 }
 
 func (a *AccountDB) UpdateBalance(account *entity.Account) error {
-	stmt, err := a.DB.Prepare("UPDATE accounts SET balance = ? WHERE id = ?")
+	stmt, err := a.DB.Prepare("UPDATE accounts SET balance = ?,updated_at = ? WHERE id = ?")
 	if err != nil {
 		return err
 	}
 	defer stmt.Close()
-	_, err = stmt.Exec(account.Balance, account.ID)
+	_, err = stmt.Exec(account.Balance, time.Now(), account.ID)
 	if err != nil {
 		return err
 	}

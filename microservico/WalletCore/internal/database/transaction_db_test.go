@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"testing"
 
-	"github.com/meoomura/fullcycle/microservico/wallet/internal/entity"
+	"meoomura/fullcycle/microservico/wallet/internal/entity"
 
 	"github.com/stretchr/testify/suite"
 )
